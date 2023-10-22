@@ -36,6 +36,7 @@ export default class Pacman {
     draw(ctx){
         this.#move(); //moving pacman
         this.#animate();
+        this.#eatDot();
 
         const size = this.tileSize/2;
 
@@ -175,6 +176,13 @@ export default class Pacman {
             this.pacmanImageIndex++;
             if(this.pacmanImageIndex == this.pacmanImages.length)
             this.pacmanImageIndex = 0;
+        }
+    }
+
+    #eatDot(){
+        if(this.tileMap.eatDot(this.x,this.y)){
+            //play sound
+        
         }
     }
 }

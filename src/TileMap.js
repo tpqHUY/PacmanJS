@@ -17,6 +17,7 @@ export default class TileMap{
 //1 - wall
 //0 - dots
 //4 - pacman
+//5 - empty spaxe
 
     map = [
         [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -39,9 +40,13 @@ export default class TileMap{
                 if(tile === 1){
                     this.#drawWall(ctx, column, row, this.tileSize);
                 }
-                if(tile === 0){
+                else if(tile === 0){
                     this.#drawDot(ctx,column,row,this.tileSize);
                 }
+                else {
+                    this.#drawBlank(ctx, column,row,this.tileSize );
+                }
+
             }
         }
     }
@@ -64,6 +69,11 @@ export default class TileMap{
             size,
             size
         );
+    }
+
+    #drawBlank(ctx,column,row,size){
+        ctx.fillStyle = "black";
+        ctx.fillRect(column *this.tileSize, row*this.tileSize, size,size); //a black rectangle
     }
 
     getPacman(velocity){
@@ -95,7 +105,7 @@ export default class TileMap{
         if(direction == null ){
             return;
         }
-        
+
         if(
             Number.isInteger(x/this.tileSize) &&
             Number.isInteger(y/this.tileSize)
@@ -135,5 +145,15 @@ export default class TileMap{
             }
         }
         return false;
+    }
+
+    eatDot(x,y){
+        const row =  y/this.tileSize; // figure out the row
+        const column = x / this.tileSize;
+        if(Number.isInteger(row) && Number.isInteger(column)){
+            if(this.map[row][column] === 0){
+                this.map[row][column] = 5;
+            }
+        }
     }
 }
