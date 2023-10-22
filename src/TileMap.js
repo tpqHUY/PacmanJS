@@ -153,7 +153,9 @@ export default class TileMap{
         if(Number.isInteger(row) && Number.isInteger(column)){
             if(this.map[row][column] === 0){
                 this.map[row][column] = 5;
+                return true;
             }
         }
+        return false;
     }
 }
