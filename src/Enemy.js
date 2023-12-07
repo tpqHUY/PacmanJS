@@ -17,11 +17,7 @@ export default class Enemy{
     this.scaredAboutToExpireTimerDefault = 10;
     this.scaredAboutToExpireTimer = this.scaredAboutToExpireTimerDefault;
   }
-  draw(ctx){
-  //   this.#move();
-  //   this.#changeDirection();
- 
-  // ctx.drawImage(this.image, this.x, this.y, this.tileSize,this.tileSize);
+  draw(ctx,pause,pacman){
     if (!pause) {
       this.#move();
       this.#changeDirection();

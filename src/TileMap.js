@@ -9,9 +9,15 @@ export default class TileMap{
         this.yellowDot = new Image();
         this.yellowDot.src = "../images/yellowDot.png";
 
+        this.pinkDot = new Image();
+        this.pinkDot.src = "..images/pinkDot.png";
         
         this.wall = new Image();
         this.wall.src = "../images/wall.png";
+
+        this.powerDot = this.pinkDot;
+        this.powerDotAnmationTimerDefault = 30;
+        this.powerDotAnmationTimer = this.powerDotAnmationTimerDefault;
     } 
 
 
@@ -72,6 +78,19 @@ export default class TileMap{
             size
         );
     }
+
+    #drawPowerDot(ctx, column, row, size) {
+        this.powerDotAnmationTimer--;
+        if (this.powerDotAnmationTimer === 0) {
+          this.powerDotAnmationTimer = this.powerDotAnmationTimerDefault;
+          if (this.powerDot == this.pinkDot) {
+            this.powerDot = this.yellowDot;
+          } else {
+            this.powerDot = this.pinkDot;
+          }
+        }
+        ctx.drawImage(this.powerDot, column * size, row * size, size, size);
+      }
 
     #drawBlank(ctx,column,row,size){
         ctx.fillStyle = "black";
@@ -171,6 +190,14 @@ export default class TileMap{
         return false;
     }
 
+    didWin() {
+        return this.#dotsLeft() === 0;
+      }
+    
+    #dotsLeft() {
+        return this.map.flat().filter((tile) => tile === 0).length;
+    }
+    
     eatDot(x,y){
         const row =  y/this.tileSize; // figure out the row
         const column = x / this.tileSize;
@@ -182,4 +209,17 @@ export default class TileMap{
         }
         return false;
     }
+
+    eatPowerDot(x, y) {
+        const row = y / this.tileSize;
+        const column = x / this.tileSize;
+        if (Number.isInteger(row) && Number.isInteger(column)) {
+          const tile = this.map[row][column];
+          if (tile === 7) {
+            this.map[row][column] = 5;
+            return true;
+          }
+        }
+        return false;
+      }
 }
