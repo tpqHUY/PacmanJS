@@ -1,8 +1,5 @@
 import MovingDirection from "./MovingDirection.js";
 
-
-
-
 export default class Pacman { 
     constructor (x,y,tileSize,velocity,tileMap){
         this.x=x;
@@ -12,7 +9,7 @@ export default class Pacman {
         this.tileMap = tileMap;
 
 
-        this. currentMovingDirection = null;
+        this.currentMovingDirection = null;
         this.requestedMovingDirection = null;
 
         this.pacmanAnimationTimerDefault = 10;

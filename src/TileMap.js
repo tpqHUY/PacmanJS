@@ -7,13 +7,13 @@ export default class TileMap{
         this.tileSize = tileSize;
 
         this.yellowDot = new Image();
-        this.yellowDot.src = "../images/yellowDot.png";
+        this.yellowDot.src = "images/yellowDot.png";
 
         this.pinkDot = new Image();
-        this.pinkDot.src = "..images/pinkDot.png";
+        this.pinkDot.src = "images/pinkDot.png";
         
         this.wall = new Image();
-        this.wall.src = "../images/wall.png";
+        this.wall.src = "images/wall.png";
 
         this.powerDot = this.pinkDot;
         this.powerDotAnmationTimerDefault = 30;
@@ -26,13 +26,13 @@ export default class TileMap{
 //4 - pacman
 //5 - empty spaxe
 //6 - ghost
-
+//7 - power dot
     map = [
         [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [ 1, 0, 0, 0, 4, 0, 0, 0, 0, 6, 0, 0, 1],
+        [ 1, 7, 0, 0, 4, 0, 0, 0, 0, 6, 0, 7, 1],
         [ 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1],
         [ 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-        [ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+        [ 1, 0, 1, 7, 1, 0, 1, 0, 1, 0, 1, 0, 1],
         [ 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
         [ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
         [ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
@@ -50,6 +50,9 @@ export default class TileMap{
                 }
                 else if(tile === 0){
                     this.#drawDot(ctx,column,row,this.tileSize);
+                }
+                else if (tile == 7) {
+                this.#drawPowerDot(ctx, column, row, this.tileSize);
                 }
                 else {
                     this.#drawBlank(ctx, column,row,this.tileSize );
