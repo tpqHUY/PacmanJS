@@ -15,6 +15,16 @@ export default class TileMap{
         this.wall = new Image();
         this.wall.src = "images/wall.png";
 
+        
+        this.pipeHorizontal = new Image();
+        this.pipeHorizontal.src = "images/pipeHorizontal.png";
+
+
+        this.pipeCorner1= new Image();
+        this.pipeCorner1.src = "images/pipeCorner1.png";
+
+
+
         this.powerDot = this.pinkDot;
         this.powerDotAnmationTimerDefault = 30;
         this.powerDotAnmationTimer = this.powerDotAnmationTimerDefault;
@@ -22,14 +32,18 @@ export default class TileMap{
 
 
 //1 - wall
+//"-" pipeHorizontal
+//11 pipeCorner1
+
+
 //0 - dots
 //4 - pacman
 //5 - empty spaxe
 //6 - ghost
 //7 - power dot
     map = [
-        [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [ 1, 7, 0, 0, 4, 0, 0, 0, 0, 6, 0, 7, 1],
+        [11, '-', '-', '-', '-', '-', '-', '-', '-', '-','-', '-', 11],
+        [ 1, 7, 0, 0, 4, 0, 0, 0, 0, 6, 0, 0, 7],
         [ 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1],
         [ 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
         [ 1, 0, 1, 7, 1, 0, 1, 0, 1, 0, 1, 0, 1],
@@ -38,7 +52,7 @@ export default class TileMap{
         [ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
         [ 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1],
         [ 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [11, '-', '-', '-', '-', '-', '-', '-', '-', '-','-','-', 11],
     ];
 
     draw(ctx){
@@ -48,12 +62,26 @@ export default class TileMap{
                 if(tile === 1){
                     this.#drawWall(ctx, column, row, this.tileSize);
                 }
+
+                if(tile === '-'){
+                    this.#drawpipeHorizontal(ctx, column, row, this.tileSize);
+                }
+
+                if(tile === 11){
+                    this.#drawpipeCorner1(ctx, column, row, this.tileSize);
+                }
+
+
+
                 else if(tile === 0){
                     this.#drawDot(ctx,column,row,this.tileSize);
                 }
                 else if (tile == 7) {
                 this.#drawPowerDot(ctx, column, row, this.tileSize);
                 }
+
+
+                
                 else {
                     this.#drawBlank(ctx, column,row,this.tileSize );
                 }
@@ -71,6 +99,27 @@ export default class TileMap{
             size
         );
     }
+
+    #drawpipeHorizontal(ctx,column,row,size){
+        ctx.drawImage(
+            this.pipeHorizontal, 
+            column * this.tileSize, 
+            row * this.tileSize,
+            size,
+            size
+        );
+    }
+
+    #drawpipeCorner1(ctx,column,row,size){
+        ctx.drawImage(
+            this.pipeCorner1, 
+            column * this.tileSize, 
+            row * this.tileSize,
+            size,
+            size
+        );
+    }
+
 
     #drawDot(ctx,column,row,size){
         ctx.drawImage(
