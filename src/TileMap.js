@@ -208,8 +208,6 @@ export default class TileMap {
     if (Number.isInteger(row) && Number.isInteger(column)) {
       if (this.map[row][column] === 0) {
         this.map[row][column] = 5;
-        score +=10;
-        scoreEl.innerHTML =score;
         return true;
         
       }
@@ -224,8 +222,7 @@ export default class TileMap {
       const tile = this.map[row][column];
       if (tile === 7) {
         this.map[row][column] = 5;
-        score +=50;
-        scoreEl.innerHTML =score;
+       
         return true;
       }
     }
