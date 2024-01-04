@@ -5,12 +5,17 @@ const velocity = 2;
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
+
+//const scoreEl= document.querySelection('#scoreEl')
+
 const tileMap = new TileMap(tileSize);
 const pacman = tileMap.getPacman(velocity);
 const enemies = tileMap.getEnemies(velocity);
 
 let gameOver = false;
 let gameWin = false;
+//let score= 0;
+
 
 // sound
 const gameOverSound = new Audio("sounds/gameOver.wav");

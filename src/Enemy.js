@@ -119,11 +119,11 @@ export default class Enemy{
 
   #loadImages(){
     this.normalGhost = new Image();
-    this.normalGhost.src = '../images/ghost.png';
+    this.normalGhost.src = '../images/blinky.png';
 
 
     this.scaredGhost = new Image();
-    this.scaredGhost.src = '../images/scaredGhost.png';
+    this.scaredGhost.src = '../images/blue_ghost.png';
 
 
     this.scaredGhost2 = new Image();
