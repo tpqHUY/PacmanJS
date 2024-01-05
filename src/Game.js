@@ -60,18 +60,18 @@ function checkGameWin() {
   
   function drawGameEnd() {
     if (gameOver || gameWin) {
-      let text = " You Win!";
+      let text = " YOU WIN!";
       if (gameOver) {
-        text = "Game Over";
+        text = "GAME OVER";
       }
   
       ctx.fillStyle = "black";
       ctx.fillRect(0, canvas.height / 3.2, canvas.width, 80);
   
-      ctx.font = "75px comic sans";
+      ctx.font = "60px arial";
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-      gradient.addColorStop("0", "magenta");
-      gradient.addColorStop("0.5", "blue");
+      gradient.addColorStop("0", "yellow");
+      gradient.addColorStop("0.5", "red");
       gradient.addColorStop("1.0", "red");
   
       ctx.fillStyle = gradient;
