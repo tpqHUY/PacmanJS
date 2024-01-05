@@ -6,6 +6,41 @@ export default class TileMap {
   constructor(tileSize) {
     this.tileSize = tileSize;
     
+    // goc trai
+    this.pipeCorner1 = new Image();
+    this.pipeCorner1.src = "images/pipeCorner1.png";
+
+    this.pipeCorner2 = new Image();
+    this.pipeCorner2.src = "images/pipeCorner2.png";
+
+
+    this.pipeCorner3 = new Image();
+    this.pipeCorner3.src = "images/pipeCorner3.png";
+
+    this.pipeCorner4 = new Image();
+    this.pipeCorner4.src = "images/pipeCorner4.png";
+
+
+    this.pipeHorizontal = new Image();
+    this.pipeHorizontal.src = "images/pipeHorizontal.png";
+
+    this.pipeVertical = new Image();
+    this.pipeVertical.src = "images/pipeVertical.png";
+
+    this.capBottom = new Image();
+    this.capBottom.src = "images/capBottom.png";
+
+    this.capLeft = new Image();
+    this.capLeft.src = "images/capLeft.png";
+
+    this.capRight = new Image();
+    this.capRight.src = "images/capRight.png";
+
+    this.capTop = new Image();
+    this.capTop.src = "images/capTop.png";
+
+
+
 
     this.yellowDot = new Image();
     this.yellowDot.src = "images/yellowDot.png";
@@ -27,18 +62,33 @@ export default class TileMap {
   //5 - empty space
   //6 - enemy
   //7 - power dot
+
+
+  //2 pipe corner 1 - top left
+  //3 pipe corner 2 - top right
+  //9 pipe corner 3 - bottom right
+  //11 - corner bottom left
+
+  //12 pipe horizontal - pipe ngang
+  //13 pipe horizontal - pipe doc
+
+  //14 cap bottom 
+  //15 cap left
+  //16 cap right
+  //17 captop
+
   map = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 7, 0, 0, 4, 0, 0, 0, 0, 0, 0, 7, 1],
-    [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
-    [1, 0, 1, 6, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-    [1, 0, 1, 7, 1, 1, 1, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1],
-    [1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [2, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 3],
+    [13, 7, 0, 0, 4, 0, 0, 0, 0, 0, 0, 7, 13],
+    [13, 0, 2, 12, 12, 12, 12, 12, 16, 0, 17, 0, 13],
+    [13, 0, 13, 6, 0, 0, 0, 0, 0, 0, 13, 0, 13],
+    [13, 0, 13, 7, 2, 12, 16, 0, 17, 0, 13, 0, 13],
+    [13, 0, 13, 0, 13, 0, 0, 0, 13, 0, 13, 0, 13],
+    [13, 0, 13, 0, 13, 0, 17, 0, 13, 0, 13, 0, 13],
+    [13, 0, 13, 0, 13, 0, 13, 0, 14, 0, 13, 0, 13],
+    [13, 0, 14, 0, 14, 0, 14, 0, 0, 0, 14, 0, 13],
+    [13, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 13],
+    [11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 9],
   ];
 
   draw(ctx) {
@@ -51,7 +101,60 @@ export default class TileMap {
           this.#drawDot(ctx, column, row, this.tileSize);
         } else if (tile == 7) {
           this.#drawPowerDot(ctx, column, row, this.tileSize);
-        } else {
+        } else if (tile == 2)
+        {
+          this.#drawCorner1(ctx, column, row, this.tileSize);
+        }
+
+        else if (tile == 3)
+        {
+          this.#drawCorner2(ctx, column, row, this.tileSize);
+        }
+
+        else if (tile == 9)
+        {
+          this.#drawCorner3(ctx, column, row, this.tileSize);
+        }
+        
+        else if (tile == 11)
+        {
+          this.#drawCorner4(ctx, column, row, this.tileSize);
+        }
+
+        else if (tile == 12)
+        {
+          this.#drawHorizontal(ctx, column, row, this.tileSize);
+        }
+        
+
+        else if (tile == 13)
+        {
+          this.#drawVertical(ctx, column, row, this.tileSize);
+        }
+
+        else if (tile == 14)
+        {
+          this.#drawBottom(ctx, column, row, this.tileSize);
+        }
+
+        else if (tile == 15)
+        {
+          this.#drawLeft(ctx, column, row, this.tileSize);
+        }
+
+        else if (tile == 16)
+        {
+          this.#drawRight(ctx, column, row, this.tileSize);
+        }
+
+        else if (tile == 17)
+        {
+          this.#drawTop(ctx, column, row, this.tileSize);
+        }
+        
+        
+        
+        else {
           this.#drawBlank(ctx, column, row, this.tileSize);
         }
 
@@ -75,6 +178,111 @@ export default class TileMap {
       size
     );
   }
+
+  #drawCorner1(ctx, column, row, size) {
+    ctx.drawImage(
+      this.pipeCorner1,
+      column * this.tileSize,
+      row * this.tileSize,
+      size,
+      size
+    );
+  }
+
+
+  #drawCorner2(ctx, column, row, size) {
+    ctx.drawImage(
+      this.pipeCorner2,
+      column * this.tileSize,
+      row * this.tileSize,
+      size,
+      size
+    );
+  }
+
+  #drawCorner3(ctx, column, row, size) {
+    ctx.drawImage(
+      this.pipeCorner3,
+      column * this.tileSize,
+      row * this.tileSize,
+      size,
+      size
+    );
+  }
+
+  #drawCorner4(ctx, column, row, size) {
+    ctx.drawImage(
+      this.pipeCorner4,
+      column * this.tileSize,
+      row * this.tileSize,
+      size,
+      size
+    );
+  }
+
+  #drawHorizontal(ctx, column, row, size) {
+    ctx.drawImage(
+      this.pipeHorizontal,
+      column * this.tileSize,
+      row * this.tileSize,
+      size,
+      size
+    );
+  }
+
+  #drawVertical(ctx, column, row, size) {
+    ctx.drawImage(
+      this.pipeVertical,
+      column * this.tileSize,
+      row * this.tileSize,
+      size,
+      size
+    );
+  }
+  #drawBottom(ctx, column, row, size) {
+    ctx.drawImage(
+      this.capBottom,
+      column * this.tileSize,
+      row * this.tileSize,
+      size,
+      size
+    );
+  }
+
+  #drawLeft(ctx, column, row, size) {
+    ctx.drawImage(
+      this.capLeft,
+      column * this.tileSize,
+      row * this.tileSize,
+      size,
+      size
+    );
+  }
+
+  #drawRight(ctx, column, row, size) {
+    ctx.drawImage(
+      this.capRight,
+      column * this.tileSize,
+      row * this.tileSize,
+      size,
+      size
+    );
+  }
+
+  #drawTop(ctx, column, row, size) {
+    ctx.drawImage(
+      this.capTop,
+      column * this.tileSize,
+      row * this.tileSize,
+      size,
+      size
+    );
+  }
+
+
+
+
+
 
   #drawPowerDot(ctx, column, row, size) {
     this.powerDotAnmationTimer--;
@@ -187,7 +395,34 @@ export default class TileMap {
           break;
       }
       const tile = this.map[row][column];
-      if (tile === 1) {
+      if (tile === 2) {
+        return true;
+      }
+      else if (tile === 3) {
+        return true;
+      }
+      else if (tile === 9) {
+        return true;
+      }
+      else if (tile === 11) {
+        return true;
+      }
+      else if (tile === 12) {
+        return true;
+      }
+      else if (tile === 13) {
+        return true;
+      }
+      else if (tile === 14) {
+        return true;
+      }
+      else if (tile === 15) {
+        return true;
+      }
+      else if (tile === 16) {
+        return true;
+      }
+      else if (tile === 17) {
         return true;
       }
     }
