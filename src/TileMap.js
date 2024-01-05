@@ -14,7 +14,7 @@ export default class TileMap {
     this.pinkDot.src = "images/pinkDot.png";
 
     this.wall = new Image();
-    this.wall.src = "images/block.png";
+    this.wall.src = "images/wall.png";
 
     this.powerDot = this.pinkDot;
     this.powerDotAnmationTimerDefault = 30;
