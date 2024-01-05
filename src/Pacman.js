@@ -1,13 +1,15 @@
 import MovingDirection from "./MovingDirection.js";
 
+
 export default class Pacman { 
+    
+
     constructor (x,y,tileSize,velocity,tileMap){
         this.x=x;
         this.y=y;
         this.tileSize = tileSize;
         this.velocity=velocity;
         this.tileMap = tileMap;
-
 
         this.currentMovingDirection = null;
         this.requestedMovingDirection = null;
@@ -21,15 +23,18 @@ export default class Pacman {
         this.powerDotSound = new Audio("sounds/power_dot.wav");
         this.powerDotActive = false;
         this.powerDotAboutToExpire = false;
-        this.timers = [];
+        this.timers =[];
 
         this.eatGhostSound = new Audio("sounds/eat_ghost.wav");
+
 
         this.madeFirstMove = false;
 
         document.addEventListener("keydown",this.#keydown);
 
         this.#loadPacmanImages();
+
+        
     }
 
     Rotation = {
@@ -196,9 +201,13 @@ export default class Pacman {
     #eatDot(){
         if(this.tileMap.eatDot(this.x,this.y)){
             //play sound
-            this.wakaSound.play();
+            
+            //this.wakaSound.play();         
         }
     }
+
+    
+
 
     #eatPowerDot() {
         if (this.tileMap.eatPowerDot(this.x, this.y)) {
@@ -222,6 +231,9 @@ export default class Pacman {
           this.timers.push(powerDotAboutToExpireTimer);
         }
       }
+
+
+    
     
       #eatGhost(enemies) {
         if (this.powerDotActive) {

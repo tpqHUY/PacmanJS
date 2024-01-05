@@ -1,20 +1,23 @@
 import TileMap from "./TileMap.js";
 
+
 const tileSize = 32;
 const velocity = 2;
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-
+const scoreEl= document.getElementById("scoreEl");
+console.log(scoreEl)
 
 const tileMap = new TileMap(tileSize);
+
 const pacman = tileMap.getPacman(velocity);
 const enemies = tileMap.getEnemies(velocity);
 
 let gameOver = false;
 let gameWin = false;
-
+let score=0;
 
 
 // sound
@@ -26,8 +29,10 @@ function gameLoop(){
     drawGameEnd();
     pacman.draw(ctx, pause(), enemies);
     enemies.forEach((enemy) => enemy.draw(ctx, pause(), pacman));
+    upgradeScore();
     checkGameOver();
     checkGameWin();
+    
 }
 
 function checkGameWin() {
@@ -57,6 +62,18 @@ function checkGameWin() {
   function pause() {
     return !pacman.madeFirstMove || gameOver || gameWin;
   }
+
+  
+
+  async function upgradeScore() {
+    if(tileMap.eated){
+      score+=10;
+      scoreEl.innerHTML = score;
+      tileMap.eated = false;
+    }
+  }
+
+
   
   function drawGameEnd() {
     if (gameOver || gameWin) {
@@ -81,3 +98,4 @@ function checkGameWin() {
   
 tileMap.setCanvasSize(canvas);
 setInterval(gameLoop, 1000 / 75);
+

@@ -2,9 +2,12 @@ import Pacman from "./Pacman.js";
 import Enemy from "./Enemy.js";
 import MovingDirection from "./MovingDirection.js";
 
+
 export default class TileMap {
   constructor(tileSize) {
     this.tileSize = tileSize;
+
+    this.eated = false;
     
     // goc trai
     this.pipeCorner1 = new Image();
@@ -230,6 +233,7 @@ export default class TileMap {
     );
   }
 
+
   #drawVertical(ctx, column, row, size) {
     ctx.drawImage(
       this.pipeVertical,
@@ -239,6 +243,8 @@ export default class TileMap {
       size
     );
   }
+
+
   #drawBottom(ctx, column, row, size) {
     ctx.drawImage(
       this.capBottom,
@@ -437,17 +443,20 @@ export default class TileMap {
     return this.map.flat().filter((tile) => tile === 0).length;
   }
 
-  eatDot(x, y) {
+ async eatDot(x, y) {
+    
     const row = y / this.tileSize;
     const column = x / this.tileSize;
     if (Number.isInteger(row) && Number.isInteger(column)) {
+      // console.log(x, y);
       if (this.map[row][column] === 0) {
+        //console.log("true");
         this.map[row][column] = 5;
-        return true;
-        
+        // return true;
+        this.eated = true;
       }
     }
-    return false;
+    // return false;
   }
 
   eatPowerDot(x, y) {
@@ -457,7 +466,6 @@ export default class TileMap {
       const tile = this.map[row][column];
       if (tile === 7) {
         this.map[row][column] = 5;
-       
         return true;
       }
     }

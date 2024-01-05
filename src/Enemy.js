@@ -127,7 +127,7 @@ export default class Enemy{
 
 
     this.scaredGhost2 = new Image();
-    this.scaredGhost2.src = '../images/ghost_vunerable_2.png';
+    this.scaredGhost2.src = '../images/3.png';
 
 
     this.image = this.normalGhost;
