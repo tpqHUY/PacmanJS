@@ -3,9 +3,9 @@ import Enemy from "./Enemy.js";
 import MovingDirection from "./MovingDirection.js";
 
 
-export default class TileMap {
+export default class TileMap { //By exporting the class as default, it can be imported and used in other modules or files.
   constructor(tileSize) {
-    this.tileSize = tileSize;
+    this.tileSize = tileSize; //"this" point to object where it belongs
 
     this.eated = false;
     
@@ -16,13 +16,11 @@ export default class TileMap {
     this.pipeCorner2 = new Image();
     this.pipeCorner2.src = "images/pipeCorner2.png";
 
-
     this.pipeCorner3 = new Image();
     this.pipeCorner3.src = "images/pipeCorner3.png";
 
     this.pipeCorner4 = new Image();
     this.pipeCorner4.src = "images/pipeCorner4.png";
-
 
     this.pipeHorizontal = new Image();
     this.pipeHorizontal.src = "images/pipeHorizontal.png";
@@ -41,8 +39,6 @@ export default class TileMap {
 
     this.capTop = new Image();
     this.capTop.src = "images/capTop.png";
-
-
 
 
     this.yellowDot = new Image();
@@ -108,17 +104,15 @@ export default class TileMap {
         {
           this.#drawCorner1(ctx, column, row, this.tileSize);
         }
-
         else if (tile == 3)
         {
           this.#drawCorner2(ctx, column, row, this.tileSize);
         }
-
         else if (tile == 9)
         {
           this.#drawCorner3(ctx, column, row, this.tileSize);
         }
-        
+      
         else if (tile == 11)
         {
           this.#drawCorner4(ctx, column, row, this.tileSize);

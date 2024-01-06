@@ -10,7 +10,7 @@ const ctx = canvas.getContext("2d");
 const scoreEl= document.getElementById("scoreEl");
 console.log(scoreEl)
 
-const tileMap = new TileMap(tileSize);
+const tileMap = new TileMap(tileSize); //create object to describe
 
 const pacman = tileMap.getPacman(velocity);
 const enemies = tileMap.getEnemies(velocity);
@@ -24,7 +24,7 @@ let score=0;
 const gameOverSound = new Audio("sounds/gameOver.wav");
 const gameWinSound = new Audio("sounds/gameWin.wav");
 
-function gameLoop(){
+function gameLoop(){ // redraw the screen certain number of times every 1 second
     tileMap.draw(ctx);
     drawGameEnd();
     pacman.draw(ctx, pause(), enemies);
@@ -97,5 +97,6 @@ function checkGameWin() {
   }
   
 tileMap.setCanvasSize(canvas);
-setInterval(gameLoop, 1000 / 75);
+setInterval(gameLoop, 1000 / 75); //call the funtion every x periods of times (milliseconds) (1000 millseconds = 1 seconds / 75 )
+// call this method 75 times every 1 second to redraw the screen 
 
