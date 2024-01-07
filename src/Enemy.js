@@ -1,4 +1,5 @@
 import MovingDirection from "./MovingDirection.js";
+import {pacman} from "./Game.js"
 
 export default class Enemy{
   constructor(x,y,tileSize,velocity,tileMap){
@@ -20,7 +21,7 @@ export default class Enemy{
   draw(ctx,pause,pacman){
     if (!pause) {
       this.#move();
-      this.#changeDirection();
+      this.FollowPacman();;
     }
     this.#setImage(ctx, pacman);
   }
@@ -38,6 +39,65 @@ export default class Enemy{
       return false;
     }
   }
+
+
+  //algorithm 
+  FollowPacman(){
+    const pacX = pacman.x; //vi tri pac
+    const pacY = pacman.y;
+
+    const distanceX = this.x - pacX;  // vi tri ghost
+    const distanceY = this.y - pacY;
+
+    this.directionTimer--;
+    let newMoveDirection = null;
+    if(this.directionTimer == 0){
+      this.directionTimer = this.directionTimerdefault;
+
+    if(distanceX < 0 && distanceY === 0) newMoveDirection = MovingDirection.right;
+    if(distanceX > 0 && distanceY === 0) newMoveDirection = MovingDirection.left;
+
+    if(distanceX === 0 && distanceY > 0) newMoveDirection = MovingDirection.up;
+    if(distanceX === 0 && distanceY < 0) newMoveDirection = MovingDirection.down;
+
+    if(distanceX > 0 && distanceY > 0){
+      if(distanceX < distanceY) newMoveDirection = MovingDirection.up;
+      else newMoveDirection = MovingDirection.left;
+    }
+
+    if(distanceX > 0 && distanceY < 0){
+      if(distanceX < distanceY) newMoveDirection = MovingDirection.down;
+      else newMoveDirection = MovingDirection.left;
+    }
+
+    if(distanceX < 0 && distanceY > 0){
+      if(distanceX < distanceY) newMoveDirection = MovingDirection.up;
+      else newMoveDirection = MovingDirection.right;
+    }
+
+    if(distanceX < 0 && distanceY < 0){
+      if(distanceX < distanceY) this.movingDirection = MovingDirection.down;
+      else this.movingDirection = MovingDirection.right;
+    }
+  }
+
+    if(newMoveDirection != null && this.movingDirection != newMoveDirection ){
+      if(
+        Number.isInteger(this.x / this.tileSize) &&
+        Number.isInteger(this.y/ this.tileSize)
+      ){
+        if(!this.tileMap.didCollideWithEnvironment(this.x,
+          this.y,
+           newMoveDirection))
+           {
+          this.movingDirection = newMoveDirection;
+        }
+      }
+    }
+  }
+
+
+
 
   #setImage(ctx, pacman) {
     if (pacman.powerDotActive) {
