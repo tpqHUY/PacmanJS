@@ -12,7 +12,7 @@ console.log(scoreEl)
 
 const tileMap = new TileMap(tileSize); //create object to describe
 
-const pacman = tileMap.getPacman(velocity);
+export const pacman = tileMap.getPacman(velocity);
 const enemies = tileMap.getEnemies(velocity);
 
 let gameOver = false;
