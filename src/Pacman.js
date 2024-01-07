@@ -2,8 +2,6 @@ import MovingDirection from "./MovingDirection.js";
 
 
 export default class Pacman { 
-    
-
     constructor (x,y,tileSize,velocity,tileMap){
         this.x=x;
         this.y=y;
@@ -27,13 +25,11 @@ export default class Pacman {
 
         this.eatGhostSound = new Audio("sounds/eat_ghost.wav");
 
-
         this.madeFirstMove = false;
 
         document.addEventListener("keydown",this.#keydown);
 
         this.#loadPacmanImages();
-
         
     }
 
