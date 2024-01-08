@@ -51,8 +51,11 @@ export default class Enemy{
 
     this.directionTimer--;
     let newMoveDirection = null;
+    
     if(this.directionTimer == 0){
       this.directionTimer = this.directionTimerdefault;
+
+    if(!this.tileMap.didCollideWithEnvironment(this.x, this.y,this.newMoveDirection)){
 
     if(distanceX < 0 && distanceY === 0) newMoveDirection = MovingDirection.right;
     if(distanceX > 0 && distanceY === 0) newMoveDirection = MovingDirection.left;
@@ -76,10 +79,13 @@ export default class Enemy{
     }
 
     if(distanceX < 0 && distanceY < 0){
-      if(distanceX < distanceY) this.movingDirection = MovingDirection.down;
-      else this.movingDirection = MovingDirection.right;
+      if(distanceX < distanceY)  newMoveDirection = MovingDirection.down;
+      else  newMoveDirection = MovingDirection.right;
     }
   }
+
+  }
+
 
     if(newMoveDirection != null && this.movingDirection != newMoveDirection ){
       if(
@@ -94,6 +100,7 @@ export default class Enemy{
         }
       }
     }
+
   }
 
 
@@ -129,6 +136,7 @@ export default class Enemy{
     let newMoveDirection = null;
     if(this.directionTimer == 0){
       this.directionTimer = this.directionTimerdefault;
+
         newMoveDirection = Math.floor(
           Math.random() * Object.keys(MovingDirection).length
         );
@@ -187,7 +195,7 @@ export default class Enemy{
 
 
     this.scaredGhost2 = new Image();
-    this.scaredGhost2.src = '../images/3.png';
+    this.scaredGhost2.src = '../images/blue_ghost.png';
 
 
     this.image = this.normalGhost;
