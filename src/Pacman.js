@@ -53,6 +53,7 @@ export default class Pacman {
         this.#eatDot();
         this.#eatPowerDot();
         this.#eatHeart();
+        this.velocityChange();
         this.#eatGhost(enemies);
         const size = this.tileSize/2;
 
@@ -248,7 +249,7 @@ export default class Pacman {
       #eatHeart(){
         if(this.tileMap.eatHeart(this.x, this.y)){
             this.powerDotSound.play();
-            this.velocity = 10;
+            
             this.heartActive = true;
             this.heartAboutToExpire =false;
             this.timer1.forEach((timer) => clearTimeout(timer));
@@ -259,18 +260,26 @@ export default class Pacman {
                 this.heartActive = false;
                 this.heartAboutToExpire= false;
                 
-              }, 1000 * 10);
+              }, 1000 * 5);
         
               this.timer1.push(heartTimer);
         
               let heartAboutToExpireTimer = setTimeout(() => {
-                  this.velocity = 2;
+            
                 this.heartAboutToExpire = true;
               }, 1000 * 3);
         
               this.timers.push(heartAboutToExpireTimer);
 
 
+        }
+      }
+
+      velocityChange(){
+        if(this.heartActive){
+            this.velocity = 4;
+        }else{
+            this.velocity = 2;
         }
       }
 }
