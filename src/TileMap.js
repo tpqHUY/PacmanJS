@@ -50,6 +50,17 @@ export default class TileMap { //By exporting the class as default, it can be im
     this.wall = new Image();
     this.wall.src = "images/wall.png";
 
+    this.heartRed = new Image();
+    this.heartRed.src = "images/heart.png";
+
+    this.heartGreen = new Image();
+    this.heartGreen.src = "images/heart_geen.png";
+
+    this.heart = this.heartRed;
+
+    this.heartAnimationTimerDefault = 20;
+    this.heartAnimationTimer = this.heartAnimationTimerDefault;
+
     this.powerDot = this.pinkDot;
     this.powerDotAnmationTimerDefault = 30;
     this.powerDotAnmationTimer = this.powerDotAnmationTimerDefault;
@@ -75,6 +86,7 @@ export default class TileMap { //By exporting the class as default, it can be im
   //15 cap left
   //16 cap right
   //17 captop
+  //18 heart
 
   map = [
     [2, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 3],
@@ -85,7 +97,7 @@ export default class TileMap { //By exporting the class as default, it can be im
     [13, 0, 13, 0, 13, 0, 0, 0, 13, 0, 13, 0, 13],
     [13, 0, 13, 0, 13, 0, 17, 0, 13, 0, 13, 0, 13],
     [13, 0, 13, 0, 13, 0, 13, 0, 14, 0, 13, 0, 13],
-    [13, 0, 14, 0, 14, 0, 14, 0, 0, 0, 14, 0, 13],
+    [13, 0, 14, 18, 14, 0, 14, 0, 0, 0, 14, 0, 13],
     [13, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 13],
     [11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 9],
   ];
@@ -148,9 +160,10 @@ export default class TileMap { //By exporting the class as default, it can be im
         {
           this.#drawTop(ctx, column, row, this.tileSize);
         }
-        
-        
-        
+        else if (tile == 18){
+          this.#drawHeart(ctx, column, row, this.tileSize);
+        }
+
         else {
           this.#drawBlank(ctx, column, row, this.tileSize);
         }
@@ -310,6 +323,21 @@ export default class TileMap { //By exporting the class as default, it can be im
   #drawBlank(ctx, column, row, size) {
     ctx.fillStyle = "black";
     ctx.fillRect(column * this.tileSize, row * this.tileSize, size, size);
+  }
+
+  #drawHeart(ctx, column, row, size){
+    
+    this.heartAnimationTimer--;
+    if (this.heartAnimationTimer === 0) {
+      this.heartAnimationTimer = this.heartAnimationTimerDefault;
+      if (this.heart == this.heartRed) {
+        this.heart = this.heartGreen;
+      } else {
+        this.heart = this.heartRed;
+      }
+    }
+    ctx.drawImage(this.heart, column * size, row * size, size, size);
+
   }
 
   getPacman(velocity) {
