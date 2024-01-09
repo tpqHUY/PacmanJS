@@ -54,11 +54,11 @@ export default class TileMap { //By exporting the class as default, it can be im
     this.heartRed.src = "images/heart.png";
 
     this.heartGreen = new Image();
-    this.heartGreen.src = "images/heart_geen.png";
+    this.heartGreen.src = "images/heart_green.png";
 
     this.heart = this.heartRed;
 
-    this.heartAnimationTimerDefault = 20;
+    this.heartAnimationTimerDefault = 10;
     this.heartAnimationTimer = this.heartAnimationTimerDefault;
 
     this.powerDot = this.pinkDot;
@@ -326,7 +326,6 @@ export default class TileMap { //By exporting the class as default, it can be im
   }
 
   #drawHeart(ctx, column, row, size){
-    
     this.heartAnimationTimer--;
     if (this.heartAnimationTimer === 0) {
       this.heartAnimationTimer = this.heartAnimationTimerDefault;
@@ -337,6 +336,7 @@ export default class TileMap { //By exporting the class as default, it can be im
       }
     }
     ctx.drawImage(this.heart, column * size, row * size, size, size);
+
 
   }
 
@@ -492,5 +492,18 @@ export default class TileMap { //By exporting the class as default, it can be im
       }
     }
     return false;
+  }
+  eatHeart(x,y){
+    const row = y / this.tileSize;
+    const column = x / this.tileSize;
+    if (Number.isInteger(row) && Number.isInteger(column)) {
+      const tile = this.map[row][column];
+      if (tile === 18) {
+        this.map[row][column] = 5;
+        return true;
+      }
+    }
+    return false;
+
   }
 }
