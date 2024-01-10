@@ -41,6 +41,7 @@ export default class Enemy{
     }
   }
 
+
   FollowPacman() {
     const pacX = pacman.x; // Pacman's x position
     const pacY = pacman.y; // Pacman's y position
@@ -67,8 +68,6 @@ export default class Enemy{
       } else if (nextY < this.y) {
         newMoveDirection = MovingDirection.up;
       }
-
-      console.log(newMoveDirection);
   
       if (newMoveDirection != null && this.movingDirection != newMoveDirection) {
         if (
@@ -83,70 +82,7 @@ export default class Enemy{
     }
   }
   
-
-  //algorithm 
-  /*FollowPacman(){
-    const pacX = pacman.x; //vi tri pac
-    const pacY = pacman.y;
-
-    const distanceX = this.x - pacX;  // vi tri ghost
-    const distanceY = this.y - pacY;
-
-    this.directionTimer--;
-    let newMoveDirection = null;
-    
-    if(this.directionTimer == 0){
-      this.directionTimer = this.directionTimerdefault;
-
-    if(!this.tileMap.didCollideWithEnvironment(this.x, this.y,this.newMoveDirection)){
-
-    if(distanceX < 0 && distanceY === 0) newMoveDirection = MovingDirection.right;
-    if(distanceX > 0 && distanceY === 0) newMoveDirection = MovingDirection.left;
-
-    if(distanceX === 0 && distanceY > 0) newMoveDirection = MovingDirection.up;
-    if(distanceX === 0 && distanceY < 0) newMoveDirection = MovingDirection.down;
-
-    if(distanceX > 0 && distanceY > 0){
-      if(distanceX < distanceY) newMoveDirection = MovingDirection.up;
-      else newMoveDirection = MovingDirection.left;
-    }
-
-    if(distanceX > 0 && distanceY < 0){
-      if(distanceX < distanceY) newMoveDirection = MovingDirection.down;
-      else newMoveDirection = MovingDirection.left;
-    }
-
-    if(distanceX < 0 && distanceY > 0){
-      if(distanceX < distanceY) newMoveDirection = MovingDirection.up;
-      else newMoveDirection = MovingDirection.right;
-    }
-
-    if(distanceX < 0 && distanceY < 0){
-      if(distanceX < distanceY)  newMoveDirection = MovingDirection.down;
-      else  newMoveDirection = MovingDirection.right;
-    }
-  }
-
-  }
-
-
-    if(newMoveDirection != null && this.movingDirection != newMoveDirection ){
-      if(
-        Number.isInteger(this.x / this.tileSize) &&
-        Number.isInteger(this.y/ this.tileSize)
-      ){
-        if(!this.tileMap.didCollideWithEnvironment(this.x,
-          this.y,
-           newMoveDirection))
-           {
-          this.movingDirection = newMoveDirection;
-        }
-      }
-    }
-
-  }*/
-
-
+  
 
 
   #setImage(ctx, pacman) {
@@ -245,3 +181,46 @@ export default class Enemy{
 
   }
 }
+
+/*
+  FollowPacman() {
+    const pacX = pacman.x; // Pacman's x position
+    const pacY = pacman.y; // Pacman's y position
+    const start = [Math.floor(this.x / this.tileSize), Math.floor(this.y / this.tileSize)]; // Enemy's current position
+    const end = [Math.floor(pacX / this.tileSize), Math.floor(pacY / this.tileSize)]; // Pacman's position
+  
+    const path = astar(this.tileMap.map, start, end); // Calculate the shortest path using A* algorithm
+  
+    if (path.length > 1) {
+      // If a path is found and it has at least one step
+      // Determine the next move based on the next node in the path
+      const nextNode = path[1]; // Assuming path[0] is the current position
+      const nextX = nextNode[0] * this.tileSize; // Calculate the x position of the next node
+      const nextY = nextNode[1] * this.tileSize; // Calculate the y position of the next node
+  
+      // Determine the new move direction based on the next node's position
+      let newMoveDirection = null;
+      if (nextX > this.x) {
+        newMoveDirection = MovingDirection.right;
+      } else if (nextX < this.x) {
+        newMoveDirection = MovingDirection.left;
+      } else if (nextY > this.y) {
+        newMoveDirection = MovingDirection.down;
+      } else if (nextY < this.y) {
+        newMoveDirection = MovingDirection.up;
+      }
+
+      console.log(newMoveDirection);
+  
+      if (newMoveDirection != null && this.movingDirection != newMoveDirection) {
+        if (
+          Number.isInteger(this.x / this.tileSize) &&
+          Number.isInteger(this.y / this.tileSize)
+        ) {
+          if (!this.tileMap.didCollideWithEnvironment(this.x, this.y, newMoveDirection)) {
+            this.movingDirection = newMoveDirection;
+          }
+        }
+      }
+    }
+  }*/
