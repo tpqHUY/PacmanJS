@@ -17,8 +17,9 @@ const enemies = tileMap.getEnemies(velocity);
 
 let gameOver = false;
 let gameWin = false;
-let score=0;
+let score = 0;
 
+let lives = 3;
 
 // sound
 const gameOverSound = new Audio("sounds/gameOver.wav");
@@ -32,7 +33,8 @@ function gameLoop(){ // redraw the screen certain number of times every 1 second
     upgradeScore();
     checkGameOver();
     checkGameWin();
-    
+    drawRemainingLives();
+    update();
 }
 
 function checkGameWin() {
@@ -55,7 +57,9 @@ function checkGameWin() {
   
   function isGameOver() {
     return enemies.some(
-      (enemy) => !pacman.powerDotActive && enemy.collideWith(pacman)
+      // (enemy) => !pacman.powerDotActive && enemy.collideWith(pacman)
+      (enemy) => lives == 0
+
     );
   }
   
@@ -73,7 +77,31 @@ function checkGameWin() {
     }
   }
 
+  function drawRemainingLives() {
+    ctx.font = "20px arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("Lives:", 10, canvas.height - 10);
+    for (let i = 0; i < lives; i++) {
+      ctx.fillText("❤️", 70 + i * 20, canvas.height - 10);
+    }
+  }
+  
+  function onGhostCollision() {
+    while(lives > 0){
+      lives--;
+    }
+    if(lives == 0){
+      gameOver = true;
+    } 
+  }
 
+  function update() {
+    enemies.forEach((enemy) => {
+      if (enemy.collideWith(pacman)) {
+        onGhostCollision();
+      }
+    });
+  }    
   
   function drawGameEnd() {
     if (gameOver || gameWin) {
@@ -85,7 +113,7 @@ function checkGameWin() {
       ctx.fillStyle = "black";
       ctx.fillRect(0, canvas.height / 3.2, canvas.width, 80);
   
-      ctx.font = "60px arial";
+      ctx.font = "60px arial";      
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
       gradient.addColorStop("0", "yellow");
       gradient.addColorStop("0.5", "red");
