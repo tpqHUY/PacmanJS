@@ -67,6 +67,8 @@ export default class Enemy{
       } else if (nextY < this.y) {
         newMoveDirection = MovingDirection.up;
       }
+
+      console.log(newMoveDirection);
   
       if (newMoveDirection != null && this.movingDirection != newMoveDirection) {
         if (

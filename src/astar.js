@@ -15,6 +15,7 @@ class Node {
   }
   
   export function astar(map, start, end) {
+    console.log(map);
     let openList = [];
     let closedList = [];
     let width = map[0].length;
@@ -86,5 +87,69 @@ class Node {
   //let end = [1, 4]; // Pacman position
   
   //let path = astar(map, start, end);
-  //console.log(path);
+  //console.log(path);*/
+
+  // Helper function to calculate the distance between two points
+/*function distance(pointA, pointB) {
+  const dx = pointB[0] - pointA[0];
+  const dy = pointB[1] - pointA[1];
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+// A* algorithm function
+export function astar(map, start, end) {
+  const openSet = [start];
+  const cameFrom = {};
+  const gScore = { [start]: 0 };
+  const fScore = { [start]: distance(start, end) };
+
+  while (openSet.length > 0) {
+    let current = openSet[0];
+    for (let i = 1; i < openSet.length; i++) {
+      if (fScore[openSet[i]] < fScore[current]) {
+        current = openSet[i];
+      }
+    }
+
+    if (current[0] === end[0] && current[1] === end[1]) {
+      const path = [current];
+      while (cameFrom[current]) {
+        current = cameFrom[current];
+        path.push(current);
+      }
+      return path.reverse();
+    }
+
+    openSet.splice(openSet.indexOf(current), 1);
+    const neighbors = getNeighbors(map, current);
+    for (const neighbor of neighbors) {
+      const tentativeGScore = gScore[current] + distance(current, neighbor);
+      if (tentativeGScore < (gScore[neighbor] || Infinity)) {
+        cameFrom[neighbor] = current;
+        gScore[neighbor] = tentativeGScore;
+        fScore[neighbor] = tentativeGScore + distance(neighbor, end);
+        if (!openSet.includes(neighbor)) {
+          openSet.push(neighbor);
+        }
+      }
+    }
+  }
+
+  return []; // No path found
+}
+
+// Helper function to get neighboring nodes
+function getNeighbors(map, [x, y]) {
+  const neighbors = [];
+  const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]; // Possible movement directions: up, down, left, right
+  for (const [dx, dy] of directions) {
+    const newX = x + dx;
+    const newY = y + dy;
+    if (newX >= 0 && newX < map.length && newY >= 0 && newY < map[0].length && (map[newX][newY] === 0 || map[newX][newY] === 5)) {
+      neighbors.push([newX, newY]);
+    }
+  }
+  return neighbors;
+}*/
+
   
