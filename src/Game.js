@@ -71,18 +71,17 @@ function checkGameWin() {
   }
   function  MovingAfterCollision(pacman){
     if(pacman.currentMovingDirection == MovingDirection.up){
-        pacman.y += pacman.velocity * 20;
+      pacman.y += pacman.velocity * 20;
     }
     if(pacman.currentMovingDirection == MovingDirection.down){
-        pacman.y -= pacman.velocity * 20;
+      pacman.y -= pacman.velocity * 20;
 
     }if(pacman.currentMovingDirection == MovingDirection.right){
-        pacman.x -= pacman.velocity * 20;
+      pacman.x -= pacman.velocity * 20;
 
     }if(pacman.currentMovingDirection == MovingDirection.left){
-        pacman.x += pacman.velocity * 20;
+      pacman.x += pacman.velocity * 20;
     }
-
   }
 function PowerDotActive(pacman){
    return pacman.powerDotActive;
@@ -100,9 +99,9 @@ function PowerDotActive(pacman){
   
 
   function drawRemainingLives() {
-    ctx.font = "20px arial";
+    ctx.font = "20px gemunu libre";
     ctx.fillStyle = "white";
-    ctx.fillText("Lives:", 10, canvas.height - 10);
+    ctx.fillText("      Lives:", 5, canvas.height - 10);
     for (let i = 0; i < lives; i++) {
       ctx.fillText("❤️", 70 + i * 20, canvas.height - 10);
     }
@@ -112,7 +111,7 @@ function PowerDotActive(pacman){
     if(lives > 0){
       lives--;
       console.log(lives);
-      
+      pacman.madeFirstMove = false;// to stop the game
     }
     if(lives == 0){
       gameOver = true;
@@ -124,9 +123,9 @@ function PowerDotActive(pacman){
       if (enemy.collideWith(pacman)) {
         if(PowerDotActive(pacman) == false){
        
-          MovingAfterCollision(pacman);
+          MovingAfterCollision(pacman);  
           onGhostCollision();
-        
+          
         }
       }
     });
