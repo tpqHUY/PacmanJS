@@ -1,8 +1,11 @@
 import TileMap from "./TileMap.js";
+import MovingDirection from "./MovingDirection.js";
+
 
 
 const tileSize = 32;
 const velocity = 2;
+const velocityghost = 1;
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
@@ -13,7 +16,7 @@ console.log(scoreEl)
 const tileMap = new TileMap(tileSize); //create object to describe
 
 export const pacman = tileMap.getPacman(velocity);
-const enemies = tileMap.getEnemies(velocity);
+const enemies = tileMap.getEnemies(velocityghost);
 
 let gameOver = false;
 let gameWin = false;
@@ -66,7 +69,24 @@ function checkGameWin() {
   function pause() {
     return !pacman.madeFirstMove || gameOver || gameWin;
   }
+  function  MovingAfterCollision(pacman){
+    if(pacman.currentMovingDirection == MovingDirection.up){
+        pacman.y += pacman.velocity * 20;
+    }
+    if(pacman.currentMovingDirection == MovingDirection.down){
+        pacman.y -= pacman.velocity * 20;
 
+    }if(pacman.currentMovingDirection == MovingDirection.right){
+        pacman.x -= pacman.velocity * 20;
+
+    }if(pacman.currentMovingDirection == MovingDirection.left){
+        pacman.x += pacman.velocity * 20;
+    }
+
+  }
+function PowerDotActive(pacman){
+   return pacman.powerDotActive;
+}
   
 
   async function upgradeScore() {
@@ -76,6 +96,8 @@ function checkGameWin() {
       tileMap.eated = false;
     }
   }
+
+  
 
   function drawRemainingLives() {
     ctx.font = "20px arial";
@@ -87,8 +109,10 @@ function checkGameWin() {
   }
   
   function onGhostCollision() {
-    while(lives > 0){
+    if(lives > 0){
       lives--;
+      console.log(lives);
+      
     }
     if(lives == 0){
       gameOver = true;
@@ -98,7 +122,12 @@ function checkGameWin() {
   function update() {
     enemies.forEach((enemy) => {
       if (enemy.collideWith(pacman)) {
-        onGhostCollision();
+        if(PowerDotActive(pacman) == false){
+       
+          MovingAfterCollision(pacman);
+          onGhostCollision();
+        
+        }
       }
     });
   }    

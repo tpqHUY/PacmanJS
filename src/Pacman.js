@@ -22,6 +22,7 @@ export default class Pacman {
         this.powerDotActive = false;
         this.powerDotAboutToExpire = false;
         this.timers =[];
+   
 
         
 
@@ -223,13 +224,14 @@ export default class Pacman {
           this.timers = [];
     
           let powerDotTimer = setTimeout(() => {
-            this.powerDotActive = false;
+            
             this.powerDotAboutToExpire = false;
           }, 1000 * 6);
     
           this.timers.push(powerDotTimer);
     
           let powerDotAboutToExpireTimer = setTimeout(() => {
+            this.powerDotActive = false;
             this.powerDotAboutToExpire = true;
           }, 1000 * 3);
     
@@ -291,4 +293,6 @@ velocityChange(){
         this.velocity = 2;
     }
   }
+
+
 }
