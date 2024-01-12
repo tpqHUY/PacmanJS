@@ -17,7 +17,9 @@ This project was implemented by:
 at the International University following instruction of Advisor Tran Thanh Tung and Tran Huu Nghia.
 
 # Screenshot
+### Wait screen when starting game
 ![A* Pacman](https://i.imgur.com/H7njko3.png)
+### Win state screen
 ![A* Pacman](https://i.imgur.com/dFx3Tb3.png)
 
 # Abstract
