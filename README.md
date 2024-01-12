@@ -1,4 +1,6 @@
 # Pacman A* with JS
+<img src="https://static.wikia.nocookie.net/pacman/images/2/24/Pac-Man-0.png/revision/latest/scale-to-width-down/1200?cb=20190526005949" align="right"
+      width="430" height="400">
 Pacman code by JS, HTML, CSS. Using path-finding algorithms: A*
 
 [Try Demo Here](https://github.com/KengG1M/PacmanJS.git)
