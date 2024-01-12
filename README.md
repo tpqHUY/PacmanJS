@@ -6,11 +6,11 @@ Pacman code by JS, HTML, CSS. Using path-finding algorithms: A*
 # About
 This project was implemented by:
 
-   *Tran Phuong Quang Huy - ITCSIU21071
+   * Tran Phuong Quang Huy - ITCSIU21071
    
-   *Nguyen Tran Hoang Ha  - ITITIU21127
+   * Nguyen Tran Hoang Ha  - ITITIU21127
    
-   *Trinh Le Bich Hang    - ITDSIU21084
+   * Trinh Le Bich Hang    - ITDSIU21084
    
 at the International University following instruction of Advisor Tran Thanh Tung and Tran Huu Nghia.
 
@@ -31,11 +31,18 @@ You can simply double click on `menu.html` or click straight to `index.html`  an
 A* is chosen for pathfinding in this scenario because it is more efficient than BFS, especially in large and complex environments. A* uses a heuristic to direct its search towards the target, leading to faster solutions. Additionally, it guarantees an optimal path if one exists, unlike BFS which is less efficient in large search spaces.
 ## Built With
 
-## Authors
+## UML
+![A* Pacman](https://i.imgur.com/JIiznAA.png)
+## Design and Implementation
+* TileMap and Visualize TileMap
+* Pacman's Moving, Animation and Eating features
+* Ghost collision and it when scare (PowerDotActive)
+* PowerDot and HeartBuff
 
 ## Acknowledgments
 
-* Inspiration: [Coding Challenge 51.1: A* Pathfinding Algorithm](https://www.youtube.com/watch?v=aKYlikFAV4k)
+* Inspiration: [Step-by-step explanation of A* pathfinding algorithm in Java](https://www.youtube.com/watch?v=2JNEme00ZFA&t=615s)
+  
 
   
 
