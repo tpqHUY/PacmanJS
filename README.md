@@ -29,7 +29,6 @@ You can simply double click on `menu.html` or click straight to `index.html`  an
 
 ## Why is A*?
 A* is chosen for pathfinding in this scenario because it is more efficient than BFS, especially in large and complex environments. A* uses a heuristic to direct its search towards the target, leading to faster solutions. Additionally, it guarantees an optimal path if one exists, unlike BFS which is less efficient in large search spaces.
-## Built With
 
 ## UML
 ![A* Pacman](https://i.imgur.com/JIiznAA.png)
