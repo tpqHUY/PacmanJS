@@ -467,15 +467,15 @@ export default class TileMap { //By exporting the class as default, it can be im
     return this.map.flat().filter((tile) => tile === 0).length;
   }
 
- async eatDot(x, y) {
+ eatDot(x, y) {
     
     const row = y / this.tileSize;
-    const column = x / this.tileSize;
-    if (Number.isInteger(row) && Number.isInteger(column)) {
+    const column = x / this.tileSize; // calculate the coordinate of dot
+    if (Number.isInteger(row) && Number.isInteger(column)) { // make sure is interger
       // console.log(x, y);
-      if (this.map[row][column] === 0) {
+      if (this.map[row][column] === 0) { // on dot
         //console.log("true");
-        this.map[row][column] = 5;
+        this.map[row][column] = 5; //empty space
         // return true;
         this.eated = true;
       }

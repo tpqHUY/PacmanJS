@@ -3,16 +3,16 @@ class Node {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.g = 0;
-    this.h = 0;
-    this.f = 0;
+    this.g = 0; //distance from the node to the start node
+    this.h = 0;  //distance from the node to the target node
+    this.f = 0; //f =g +h
     this.parent = null;
   }
 }
 
 export function astar(map, start, end) {
-  let openList = [];
-  let closedList = [];
+  let openList = [];// list of node with start to search
+  let closedList = [];// list of node already process
   let width = map[0].length;
   let height = map.length;
 
