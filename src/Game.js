@@ -88,7 +88,7 @@ function PowerDotActive(pacman){
 }
   
 
-  async function upgradeScore() {
+  function upgradeScore() {
     if(tileMap.eated){
       score+=10;
       scoreEl.innerHTML = score;
