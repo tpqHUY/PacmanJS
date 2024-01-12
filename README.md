@@ -18,6 +18,7 @@ at the International University following instruction of Advisor Tran Thanh Tung
 
 # Screenshot
 ![A* Pacman](https://i.imgur.com/H7njko3.png)
+![A* Pacman](https://i.imgur.com/dFx3Tb3.png)
 
 # Abstract
 This project focuses on developing a real-time AI pathfinder, a crucial component in some applications like gepgraphical mapping, IP routing, telephone networks,etc..
