@@ -13,7 +13,7 @@ const ctx = canvas.getContext("2d");
 const scoreEl= document.getElementById("scoreEl");
 console.log(scoreEl)
 
-const tileMap = new TileMap(tileSize); //create object to describe
+const tileMap = new TileMap(tileSize, 2); //create object to describe
 
 export const pacman = tileMap.getPacman(velocity);
 const enemies = tileMap.getEnemies(velocityghost);

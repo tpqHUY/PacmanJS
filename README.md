@@ -30,7 +30,9 @@ The AI, unlike a standard enemy-player tracker, will utilize various search algo
 Our goal is to make a pathfinder that is not only  efficient in determining the shortest path but also can be adaptable to changing target and obstacles.
 ## Getting Started
 
-You can simply double click on `menu.html` or click straight to `index.html`  and use the app. 
+You can simply double click on `menu.html` or click straight to `index.html`  and use the app.
+
+The game supports multiple map layouts. The second argument to the `TileMap` constructor selects the map number, e.g. `new TileMap(tileSize, 2)` loads the new map design.
 
 ## Why is A*?
 A* is chosen for pathfinding in this scenario because it is more efficient than BFS, especially in large and complex environments. A* uses a heuristic to direct its search towards the target, leading to faster solutions. Additionally, it guarantees an optimal path if one exists, unlike BFS which is less efficient in large search spaces.
